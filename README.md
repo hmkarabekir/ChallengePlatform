@@ -1,41 +1,56 @@
-# Challenge Platform - TypeScript Implementation
+Challenge Platform - TypeScript Implementation
 
-Algorand blockchain üzerinde **TypeScript** kullanarak geliştirilmiş habit tracker challenge platformu. Kullanıcılar challenge'lara katılım ücreti ödeyerek dahil olur ve görevleri tamamlayarak puan kazanırlar.
+A TypeScript-based habit tracker challenge platform built on the Algorand blockchain. Users pay an entry fee to join challenges and earn points by completing tasks.
 
-## 🚀 Özellikler
+🚀 Features
+Challenge System
 
-### Challenge Sistemi
-- 3 haftalık süreçli challenge'lar
-- Minimum 10, maksimum 30 katılımcı
-- Katılım ücreti (ALGO cinsinden)
-- Her hafta puan bazlı sıralama
-- Son sıradaki katılımcının elenmesi
+3-week challenges
 
-### Puan ve Ödeme Sistemi
-- Günlük görevler için puan kazanma
-- Haftalık puan toplamına göre sıralama
-- Elenen katılımcının %30 kesinti
-- Kalan %70'in ilk 3'e dağıtımı:
-  - 1. sıra: %40
-  - 2. sıra: %30  
-  - 3. sıra: %30
+Minimum 10, maximum 30 participants
 
-## 🛠️ Teknoloji Stack
+Entry fee (in ALGO)
 
-- **Algorand blockchain**
-- **TypeScript (full-stack)**
-- **@algorandfoundation/algorand-typescript** (Smart contracts)
-- **@algorandfoundation/algokit-utils** (Utilities)
-- **algosdk** (Core SDK)
-- **Express.js** (API Server)
-- **Jest** (Testing)
+Weekly point-based leaderboard
 
-## 📁 Proje Yapısı
+The last participant is eliminated each week
 
-```
+Points & Payment System
+
+Earn points for daily tasks
+
+Weekly ranking based on total points
+
+Eliminated participant loses 30% of their stake
+
+Remaining 70% distributed to top 3:
+
+1st place: 40%
+
+2nd place: 30%
+
+3rd place: 30%
+
+🛠️ Tech Stack
+
+Algorand blockchain
+
+TypeScript (full-stack)
+
+@algorandfoundation/algorand-typescript (Smart contracts)
+
+@algorandfoundation/algokit-utils (Utilities)
+
+algosdk (Core SDK)
+
+Express.js (API Server)
+
+Jest (Testing)
+
+📁 Project Structure
 challenge-platform/
 ├── contracts/
-│   ├── HabitTrackerChallenge.algo.ts    # Ana smart contract
+│   ├── HabitTrackerChallenge.algo.ts    # Main smart contract
 │   ├── client/
 │   │   └── HabitTrackerClient.ts        # TypeScript client
 │   ├── types/
@@ -53,89 +68,62 @@ challenge-platform/
 ├── .eslintrc.js
 ├── algokit.toml
 └── README.md
-```
-
-## 🚀 Kurulum
-
-### 1. Dependencies Yükle
-```bash
+🚀 Setup
+1. Install Dependencies
 npm install
-```
 
-### 2. Environment Variables Ayarla
-```bash
-# .env dosyası oluştur
+2. Configure Environment Variables
+# Create .env file
 cp .env.example .env
 
-# Environment variables'ları düzenle
+# Edit environment variables
 DEPLOYER_MNEMONIC="your mnemonic phrase here"
 ALGOD_SERVER="https://testnet-api.algonode.cloud"
 ALGOD_TOKEN=""
-```
 
-### 3. Projeyi Build Et
-```bash
+3. Build the Project
 npm run build:all
-```
 
-### 4. Testleri Çalıştır
-```bash
+4. Run Tests
 npm test
-```
 
-## 🔧 Development
-
-### Smart Contract Geliştirme
-```bash
-# Contract'ları derle
+🔧 Development
+Smart Contract Development
+# Compile contracts
 npm run build:contracts
 
-# Development mode'da çalıştır
+# Run in development mode
 npm run dev:contracts
-```
 
-### API Server Geliştirme
-```bash
-# API server'ı development mode'da çalıştır
+API Server Development
+# Run API server in development mode
 npm run dev:api
-```
 
-### Linting
-```bash
-# TypeScript linting
+Linting
+# Run TypeScript linting
 npm run lint
 
-# Linting'i otomatik düzelt
+# Fix linting issues
 npm run lint:fix
-```
 
-## 🚀 Deployment
-
-### Local Network
-```bash
-# Local network başlat
+🚀 Deployment
+Local Network
+# Start local network
 algokit localnet start
 
-# Contract'ı deploy et
+# Deploy contract
 npm run deploy:localnet
-```
 
-### Testnet
-```bash
-# Testnet'e deploy et
+Testnet
+# Deploy to testnet
 npm run deploy:testnet
-```
 
-### Mainnet
-```bash
-# Mainnet'e deploy et
+Mainnet
+# Deploy to mainnet
 npm run deploy:mainnet
-```
 
-## 📚 API Kullanımı
-
-### Challenge Oluşturma
-```typescript
+📚 API Usage
+Create Challenge
 POST /api/challenges/create
 {
   "name": "Fitness Challenge",
@@ -146,19 +134,15 @@ POST /api/challenges/create
   "creatorPrivateKey": "your private key",
   "appId": 123
 }
-```
 
-### Challenge'a Katılım
-```typescript
+Join Challenge
 POST /api/challenges/:id/join
 {
   "participantAddress": "participant address",
   "privateKey": "participant private key"
 }
-```
 
-### Görev Tamamlama
-```typescript
+Complete Task
 POST /api/challenges/:id/complete-task
 {
   "taskId": "1",
@@ -167,20 +151,16 @@ POST /api/challenges/:id/complete-task
   "pointsEarned": 10,
   "week": 1
 }
-```
 
-### Haftalık Eleme
-```typescript
+Weekly Elimination
 POST /api/challenges/:id/eliminate
 {
   "week": 1,
   "eliminatedParticipant": "participant address",
   "creatorPrivateKey": "creator private key"
 }
-```
 
-### Ödül Dağıtımı
-```typescript
+Reward Distribution
 POST /api/challenges/:id/distribute-rewards
 {
   "week": 1,
@@ -189,92 +169,107 @@ POST /api/challenges/:id/distribute-rewards
   "winner3": "winner 3 address",
   "creatorPrivateKey": "creator private key"
 }
-```
 
-## 🧪 Testing
-
-### Tüm Testleri Çalıştır
-```bash
+🧪 Testing
+Run All Tests
 npm test
-```
 
-### Sadece Contract Testleri
-```bash
+Contract Tests Only
 npm run test:contracts
-```
 
-### Sadece API Testleri
-```bash
+API Tests Only
 npm run test:api
-```
 
-### Integration Testleri
-```bash
+Integration Tests
 npm run test:integration
-```
 
-## 📖 Smart Contract Methods
+📖 Smart Contract Methods
+HabitTrackerChallenge Contract
+Global State
 
-### HabitTrackerChallenge Contract
+challengeId: Challenge ID
 
-#### Global State
-- `challengeId`: Challenge ID
-- `entryFee`: Katılım ücreti
-- `startTime`: Başlangıç zamanı
-- `currentWeek`: Mevcut hafta
-- `totalParticipants`: Toplam katılımcı sayısı
-- `maxParticipants`: Maksimum katılımcı sayısı
-- `isActive`: Challenge aktif mi
-- `creator`: Challenge oluşturucu
-- `week1Pool`, `week2Pool`, `week3Pool`: Haftalık ödül havuzları
+entryFee: Entry fee
 
-#### Local State (Her Katılımcı İçin)
-- `isParticipant`: Katılımcı mı
-- `week1Points`, `week2Points`, `week3Points`: Haftalık puanlar
-- `totalPoints`: Toplam puan
-- `isEliminated`: Elenmiş mi
-- `eliminationWeek`: Elenme haftası
-- `lastTaskTime`: Son görev zamanı
+startTime: Start time
 
-#### Methods
-- `createChallenge()`: Challenge oluştur
-- `joinChallenge()`: Challenge'a katıl
-- `completeTask()`: Görev tamamla
-- `weeklyElimination()`: Haftalık eleme
-- `distributeWeeklyRewards()`: Haftalık ödül dağıt
-- `endChallenge()`: Challenge'ı sonlandır
-- `getParticipantState()`: Katılımcı durumunu sorgula
-- `getChallengeInfo()`: Challenge bilgilerini sorgula
+currentWeek: Current week
 
-## 🔒 Güvenlik
+totalParticipants: Total participants
 
-- Tüm transaction'lar imzalanmalı
-- Sadece creator belirli işlemleri yapabilir
-- Katılımcı limitleri kontrol edilir
-- Puan hesaplamaları doğrulanır
-- Ödül dağıtımları güvenli
+maxParticipants: Max participants
 
-## 🤝 Katkıda Bulunma
+isActive: Is challenge active
 
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Commit yapın (`git commit -m 'Add amazing feature'`)
-4. Push yapın (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
+creator: Challenge creator
 
-## 📄 Lisans
+week1Pool, week2Pool, week3Pool: Weekly reward pools
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakın.
+Local State (Per Participant)
 
-## 📞 İletişim
+isParticipant: Is participant
 
-- **Proje Sahibi**: Challenge Platform Team
-- **Email**: team@challengeplatform.com
-- **GitHub**: [challenge-platform](https://github.com/challenge-platform/challenge-platform)
+week1Points, week2Points, week3Points: Weekly points
 
-## 🙏 Teşekkürler
+totalPoints: Total points
 
-- [Algorand Foundation](https://algorand.foundation/)
-- [AlgoKit](https://github.com/algorandfoundation/algokit)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Express.js](https://expressjs.com/)
+isEliminated: Eliminated or not
+
+eliminationWeek: Week of elimination
+
+lastTaskTime: Last task completion time
+
+Methods
+
+createChallenge(): Create challenge
+
+joinChallenge(): Join challenge
+
+completeTask(): Complete task
+
+weeklyElimination(): Weekly elimination
+
+distributeWeeklyRewards(): Distribute weekly rewards
+
+endChallenge(): End challenge
+
+getParticipantState(): Query participant state
+
+getChallengeInfo(): Query challenge info
+
+🔒 Security
+
+All transactions must be signed
+
+Only the creator can perform certain actions
+
+Participant limits are enforced
+
+Point calculations are verified
+
+Reward distributions are secure
+
+🤝 Contribution
+
+Fork the repo
+
+Create a feature branch (git checkout -b feature/amazing-feature)
+
+Commit changes (git commit -m 'Add amazing feature')
+
+Push to branch (git push origin feature/amazing-feature)
+
+Open a Pull Request
+
+📄 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+🙏 Acknowledgments
+
+Algorand Foundation
+
+AlgoKit
+
+TypeScript
+
+Express.js
