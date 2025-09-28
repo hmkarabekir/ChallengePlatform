@@ -1,0 +1,54 @@
+[algokit]
+min_version = "v2.0.0"
+
+[generate.smart-contract]
+description = "Generate a new TypeScript smart contract for existing project"
+path = ".algokit/generators/create_contract"
+
+[generate.env-file]
+description = "Generate a new generic or Algorand network specific .env file"
+path = ".algokit/generators/create_env_file"
+
+[project]
+type = 'contract'
+name = 'challenge-platform'
+artifacts = 'contracts/artifacts'
+
+[project.deploy]
+command = "npm run build:contracts && npm run deploy:contract"
+
+[project.deploy.testnet]
+environment_secrets = [
+  "DEPLOYER_MNEMONIC",
+  "ALGOD_SERVER",
+  "ALGOD_TOKEN"
+]
+
+[project.deploy.mainnet]
+environment_secrets = [
+  "DEPLOYER_MNEMONIC",
+  "ALGOD_SERVER",
+  "ALGOD_TOKEN"
+]
+
+[project.run]
+# Commands intended for use locally and in CI
+build = { commands = [
+  'npm run build:all',
+], description = 'Build all TypeScript smart contracts and API' }
+lint = { commands = [
+  'npm run lint',
+], description = 'Perform TypeScript linting' }
+test = { commands = [
+  'npm test',
+], description = 'Run all tests' }
+audit-teal = { commands = [
+  # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.
+  'algokit task analyze contracts/artifacts --recursive --force --exclude rekey-to --exclude is-updatable --exclude missing-fee-check --exclude is-deletable --exclude can-close-asset --exclude can-close-account --exclude unprotected-deletable --exclude unprotected-updatable',
+], description = 'Audit TEAL files' }
+
+# Commands intended for CI only, prefixed with `ci-` by convention
+ci-teal-diff = { commands = [
+  'git add -N ./contracts/artifacts',
+  'git diff --exit-code --minimal ./contracts/artifacts',
+], description = 'Check TEAL files for differences' }

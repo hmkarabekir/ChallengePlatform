@@ -1,0 +1,70 @@
+{
+  "account": {
+    "address": "CB63C4WX57SOWPZDDZDVWMHEDBSATSI6PI74PNG67G67D7POIGRNQAIW6M",
+    "private_key": "Pd0h+p7vJ3usEi9gIny2f8AnsLhOiucDGoW6FTFGmLkQfbFy1+/k6z8jHkdbMOQYZAnJHno/x7Te+b3x/e5Bog==",
+    "mnemonic": "police manual laptop wheat exist burst nice congress equal vacuum swamp among exhibit clown into medal language gym dream forum giraffe bag smoke absent tissue"
+  },
+  "deployment": {
+    "success": true,
+    "app_id": 746514765,
+    "tx_id": "TVIE65FYXO6IKBHDR6SRMKSODJV5QOCDGBNR3G47KED3HB5BGERA",
+    "account": {
+      "address": "CB63C4WX57SOWPZDDZDVWMHEDBSATSI6PI74PNG67G67D7POIGRNQAIW6M",
+      "private_key": "Pd0h+p7vJ3usEi9gIny2f8AnsLhOiucDGoW6FTFGmLkQfbFy1+/k6z8jHkdbMOQYZAnJHno/x7Te+b3x/e5Bog==",
+      "mnemonic": "police manual laptop wheat exist burst nice congress equal vacuum swamp among exhibit clown into medal language gym dream forum giraffe bag smoke absent tissue"
+    }
+  },
+  "contract": {
+    "app_id": 746514765,
+    "methods": [
+      {
+        "name": "create_challenge",
+        "args": [
+          {
+            "name": "challenge_id",
+            "type": "uint64"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "stake_amount",
+            "type": "uint64"
+          },
+          {
+            "name": "max_participants",
+            "type": "uint64"
+          }
+        ]
+      },
+      {
+        "name": "join_challenge",
+        "args": [
+          {
+            "name": "challenge_id",
+            "type": "uint64"
+          }
+        ]
+      },
+      {
+        "name": "get_challenge_info",
+        "args": [
+          {
+            "name": "challenge_id",
+            "type": "uint64"
+          }
+        ],
+        "returns": {
+          "type": "struct"
+        }
+      }
+    ]
+  },
+  "network": "testnet",
+  "algod_address": "https://testnet-api.algonode.cloud"
+}

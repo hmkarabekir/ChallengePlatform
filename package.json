@@ -1,0 +1,72 @@
+{
+  "name": "challenge-platform",
+  "version": "1.0.0",
+  "description": "Algorand Habit Tracker Challenge Platform - TypeScript Implementation",
+  "main": "dist/api/server.js",
+  "scripts": {
+    "build:contracts": "algo-ts contracts/HabitTrackerChallenge.algo.ts",
+    "build:client": "tsc contracts/client/*.ts --outDir dist/client --target es2020 --module commonjs --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports",
+    "build:api": "tsc contracts/api/*.ts --outDir dist/api --target es2020 --module commonjs --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports",
+    "build:types": "tsc contracts/types/*.ts --outDir dist/types --target es2020 --module commonjs --moduleResolution node --esModuleInterop --allowSyntheticDefaultImports",
+    "build:all": "npm run build:contracts && npm run build:client && npm run build:api && npm run build:types",
+    "dev:api": "nodemon --exec ts-node contracts/api/server.ts",
+    "dev:contracts": "nodemon --exec algo-ts contracts/HabitTrackerChallenge.algo.ts",
+    "start": "node dist/api/server.js",
+    "deploy:localnet": "algokit deploy localnet",
+    "deploy:testnet": "algokit deploy testnet",
+    "deploy:mainnet": "algokit deploy mainnet",
+    "test": "jest",
+    "test:contracts": "jest tests/contracts",
+    "test:integration": "jest tests/client",
+    "test:api": "jest tests/api",
+    "lint": "eslint contracts/**/*.ts",
+    "lint:fix": "eslint contracts/**/*.ts --fix",
+    "clean": "rm -rf dist artifacts",
+    "setup": "npm install && npm run build:all"
+  },
+  "keywords": [
+    "algorand",
+    "blockchain",
+    "smart-contracts",
+    "typescript",
+    "habit-tracker",
+    "challenge-platform",
+    "algokit"
+  ],
+  "author": "Challenge Platform Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "algosdk": "^2.7.0",
+    "@algorandfoundation/algokit-utils": "^9.1.0",
+    "@algorandfoundation/algorand-typescript": "^1.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/cors": "^2.8.13",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "nodemon": "^3.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/challenge-platform/challenge-platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/challenge-platform/challenge-platform/issues"
+  },
+  "homepage": "https://github.com/challenge-platform/challenge-platform#readme"
+}
